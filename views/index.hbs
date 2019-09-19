@@ -1,0 +1,16 @@
+<h1>MOVIES APP</h1>
+
+
+
+<div class="movies-container">
+  {{#each movies}}
+    <div class="movie-item">
+      <img src="{{this.imgPath}}" alt="{{this.imgName}}">
+      <h3>{{this.title}}</h3>
+      <p>{{this.description}}</p>
+    </div>
+
+    {{else}}
+    <p>No results found 😞</p>
+  {{/each}}
+</div>
