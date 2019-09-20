@@ -8,6 +8,8 @@ const movieSchema = new Schema({
   description: String,
   imgName: String,
   imgPath: String,
+  creator: { type: Schema.Types.ObjectId, ref: 'User' },
+  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
 }, {
   timestamps: true,
 });

@@ -1,16 +1,22 @@
 <h1>MOVIES APP</h1>
 
 
-
+{{#if user}}
 <div class="movies-container">
   {{#each movies}}
     <div class="movie-item">
       <img src="{{this.imgPath}}" alt="{{this.imgName}}">
       <h3>{{this.title}}</h3>
       <p>{{this.description}}</p>
+        <p>Creator: {{this.creator.username}}</p>
+      <form action="/newComment/{{this._id}}" method="POST">
+        <textarea name="content" cols="30" rows="10"></textarea>
+        <input type="submit" value="Comment">
+      </form>
     </div>
 
     {{else}}
     <p>No results found 😞</p>
   {{/each}}
 </div>
+{{/if}}

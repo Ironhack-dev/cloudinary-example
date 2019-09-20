@@ -17,11 +17,21 @@ router.post('/add', upload.single('photo'), (req, res, next) => {
     description,
     imgName: originalname,
     imgPath: url,
+    creator: req.user._id,
   });
 
   newMovie.save()
     .then(() => res.redirect('/'))
     .catch(error => next(error));
+});
+
+router.get('/movies', (req, res, next) => {
+  Movie.find()
+    .populate('creator')
+    .populate({ path: 'comments', populate: { path: 'author' } })
+    .then((movies) => {
+      res.json(movies);
+    });
 });
 
 module.exports = router;
